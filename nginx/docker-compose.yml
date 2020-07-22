@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    volumes:
+      - /Users/chenguorong/Project/xiaoyinka/xiaoyinka:/data/www/xiaoyinka
+    tty: true
+
