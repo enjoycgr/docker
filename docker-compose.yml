@@ -9,6 +9,7 @@ services:
     volumes:
       - /Users/chenguorong/Project/xiaoyinka/xiaoyinka:/data/www/xiaoyinka
       - /Users/chenguorong/Project/xiaoyinka/api:/data/www/api
+      - /Users/chenguorong/Project/xiaoyinka/logs/:/data/logs/
   php:
     image: ubuntu_php:latest
     ports:
@@ -16,6 +17,7 @@ services:
     volumes:
       - /Users/chenguorong/Project/xiaoyinka/xiaoyinka:/data/www/xiaoyinka
       - /Users/chenguorong/Project/xiaoyinka/api:/data/www/api
+      - /Users/chenguorong/Project/xiaoyinka/logs/:/data/logs/
     links:
       - web
 

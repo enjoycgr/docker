@@ -27,8 +27,8 @@ RUN set -ex \
     && rm -rf /opt/src
 
 RUN set -ex \   
-    && mkdir -p /data/logs/nginx/api \
-    && mkdir -p /data/logs/nginx/xiaoyinka \
+    && mkdir -p /data/logs/nginx \
+    && mkdir -p /data/logs/nginx \
     && chmod -R 777 /data/logs/nginx
 
 COPY opt /opt

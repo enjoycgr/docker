@@ -16,11 +16,25 @@ RUN set -ex \
         php$PHP_VERSION-mbstring \
         php$PHP_VERSION-gmp \
         php$PHP_VERSION-ldap \
+        php$PHP_VERSION-zip \
     && apt-get clean
 
-RUN sed -i 's/;daemonize = yes/daemonize = no/' /etc/php/$PHP_VERSION/fpm/php-fpm.conf
+RUN set -ex \
+    # Composer
+    && wget https://install.phpcomposer.com/composer.phar -O /usr/local/bin/composer \
+    && chmod +x /usr/local/bin/composer \
+    && composer config -g repo.packagist composer https://packagist.phpcomposer.com
+
+RUN set -ex \   
+    && useradd www \
+    && usermod -s /sbin/nologin www \
+    && mkdir -p /data/logs/php \
+    && mkdir -p /data/logs/php \
+    && chmod -R 777 /data/logs/php
 
 COPY opt /opt
+
+RUN sed -i "s/PHP_VERSION/$PHP_VERSION/" /opt/conf/supervisor/conf.d/php-fpm.conf
 
 EXPOSE 9000
 
